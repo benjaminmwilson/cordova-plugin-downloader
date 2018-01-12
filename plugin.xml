@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-downloader" version="0.0.1">
+    <name>Downloader</name>
+    <description>Cordova Downloader Plugin with no cordova-file-transfer dependency</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,download,zip,unzip</keywords>
+    <js-module src="www/downloader.js" name="downloader">
+        <clobbers target="downloader" />
+    </js-module>
+</plugin>
