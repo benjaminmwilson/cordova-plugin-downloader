@@ -3,9 +3,16 @@
         id="cordova-plugin-downloader" version="0.0.1">
     <name>Downloader</name>
     <description>Cordova Downloader Plugin with no cordova-file-transfer dependency</description>
+    <author>Ben Wilson</author>
     <license>Apache 2.0</license>
     <keywords>cordova,download,zip,unzip</keywords>
-    <js-module src="www/downloader.js" name="downloader">
-        <clobbers target="downloader" />
+
+    <repo>https://github.com/benjaminmwilson/cordova-plugin-downloader</repo>
+    <issue>https://github.com/benjaminmwilson/cordova-plugin-downloader/issues</issue>
+    <dependency id="cordova-plugin-file" version="4.3.3" />
+    <dependency id="cordova-plugin-zip" version="3.1.0" />
+
+    <js-module src="www/download.js" name="download">
+        <clobbers target="download" />
     </js-module>
 </plugin>
