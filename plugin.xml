@@ -6,6 +6,6 @@
     <license>Apache 2.0</license>
     <keywords>cordova,download,zip,unzip</keywords>
     <js-module src="www/downloader.js" name="downloader">
-        <clobbers target="downloader" />
+        <clobbers target="Downloader" />
     </js-module>
 </plugin>
