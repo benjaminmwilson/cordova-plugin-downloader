@@ -5,7 +5,7 @@
     <description>Cordova Downloader Plugin with no cordova-file-transfer dependency</description>
     <author>Ben Wilson</author>
     <license>Apache 2.0</license>
-    <keywords>cordova,download,zip,unzip</keywords>
+    <keywords>cordova,download,downloader,file,unzip</keywords>
 
     <repo>https://github.com/benjaminmwilson/cordova-plugin-downloader</repo>
     <issue>https://github.com/benjaminmwilson/cordova-plugin-downloader/issues</issue>

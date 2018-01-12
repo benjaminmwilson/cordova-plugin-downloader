@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-downloader",
+  "version": "0.0.1",
+  "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
+  "cordova": {
+    "id": "cordova-plugin-downloader",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "cordova-plugin-downloader"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "file",
+    "download",
+    "downloader",
+    "unzip"
+  ],
+  "author": "Ben Wilson",
+  "license": "Apache 2.0"
+}
