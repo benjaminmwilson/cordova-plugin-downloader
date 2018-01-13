@@ -1,5 +1,3 @@
-(function () {
-
     function Download() {
         this.Settings = {
             fileSystem : cordova.file.dataDirectory,
@@ -184,8 +182,18 @@
      * @param {string} path
      */
     function GetLastPath(path) {
-        return path.slice(-1) === "/"  ? path.slice(0, -1).GetAfterLast("/") : path.GetAfterLast("/");
+        return path.slice(-1) === "/"  ? GetAfterLast(path.slice(0, -1), "/") : GetAfterLast(path, "/");
     }
+
+    /**
+     * Returns substring after last occurrence of s
+     * @param str
+     * @param s
+     */
+    function GetAfterLast(str, s) {
+        return str.substring(str.lastIndexOf(s)+1);
+    };
+
 
     /**
      * Joins together a list of paths and returns them without a trailing /
@@ -206,6 +214,5 @@
         return path;
     }
 
-    window.download = Download;
+    module.exports = Download;
 
-})();
