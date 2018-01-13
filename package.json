@@ -3,14 +3,16 @@
   "version": "0.0.1",
   "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
   "devDependencies": {
-    "jshint": "^2.9.3"
+    "chai": "^4.1.2",
+    "jshint": "^2.9.3",
+    "mocha": "^4.1.0"
   },
   "config": {
-    "lintdirs": "www/**.js"
+    "lintdirs": "www/**.js lib/**.js"
   },
   "scripts": {
     "lint": "rm -f npm-debug.log && jshint $npm_package_config_lintdirs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha lib/**/**.spec.js"
   },
   "cordova": {
     "id": "cordova-plugin-downloader",
