@@ -159,6 +159,8 @@
 
         function RemoveZipFile(zipFilePath) {
 
+            /** @namespace resolveLocalFileSystemURL **/
+
             var fszipFilePath = Join([that.Settings.fileSystem, zipFilePath]);
 
             window.resolveLocalFileSystemURL(fszipFilePath,
@@ -192,8 +194,7 @@
      */
     function GetAfterLast(str, s) {
         return str.substring(str.lastIndexOf(s)+1);
-    };
-
+    }
 
     /**
      * Joins together a list of paths and returns them without a trailing /
@@ -214,5 +215,6 @@
         return path;
     }
 
+    /** @namespace module **/
     module.exports = Download;
 

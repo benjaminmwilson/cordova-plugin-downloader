@@ -2,6 +2,16 @@
   "name": "cordova-plugin-downloader",
   "version": "0.0.1",
   "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
+  "devDependencies": {
+    "jshint": "^2.9.3"
+  },
+  "config": {
+    "lintdirs": "www/**.js"
+  },
+  "scripts": {
+    "lint": "rm -f npm-debug.log && jshint $npm_package_config_lintdirs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "cordova": {
     "id": "cordova-plugin-downloader",
     "platforms": [
