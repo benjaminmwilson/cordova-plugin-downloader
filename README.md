@@ -84,7 +84,7 @@ function DownloaderSuccess() {
 
 Chrome / Safari debugging reveals many basic problems but if this isn't
 sufficient suggest `adb logcat` for Android and Xcode Window->Devices and Simulators
-for iOS. Example Android with filter for app com.yourco.yourapp:
+for iOS. Example Android with filter for app `com.yourco.yourapp`:
 
 macOS / Linux:
 
