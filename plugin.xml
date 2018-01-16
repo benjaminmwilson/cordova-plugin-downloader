@@ -9,8 +9,15 @@
 
     <repo>https://github.com/benjaminmwilson/cordova-plugin-downloader</repo>
     <issue>https://github.com/benjaminmwilson/cordova-plugin-downloader/issues</issue>
-    <dependency id="cordova-plugin-file" version="4.3.3" />
-    <dependency id="cordova-plugin-zip" version="3.1.0" />
+
+    <engines>
+        <engine name="cordova" version=">=5.0.0" />
+        <engine name="cordova-android" version=">=6.0.0" />
+        <engine name="cordova-ios" version=">=4.0.0" />
+    </engines>
+
+    <dependency id="cordova-plugin-file" version=">=4.0.0" />
+    <dependency id="cordova-plugin-zip" version=">=3.0.0" />
 
     <js-module src="www/download.js" name="download">
         <clobbers target="download" />
