@@ -10,7 +10,7 @@ Inspired by `cordova-plugin-fastrde-downloader` but with less features.
 
 Android 4.4+
 iOS 10+
-Cordova 5.0+
+Cordova 5.0+  
 
 
 ## Installation
