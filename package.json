@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "cordova-plugin-downloader"
+    "url": "https://github.com/benjaminmwilson/cordova-plugin-downloader"
   },
   "keywords": [
     "cordova",
