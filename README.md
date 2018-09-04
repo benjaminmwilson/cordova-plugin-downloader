@@ -67,7 +67,7 @@ function DownloaderSuccess() {
 | `timeout`     | `0`                          | Download timeout in milliseconds. Set to 0 for infinite time|
 | `success`     | `undefined`                  | Success callback|
 | `error`       | `undefined`                  | Error callback. Argument indicates problem|
-| `headers`     | `undefined`                  | Set XHR Headers. Accepts a list Key/Value pairs. `[{Key: 'Authorization', Value: 'Basic xxxxxxx'}]`|
+| `headers`     | `[]`                         | Set XHR Headers. Accepts a list Key/Value pairs. `[{Key: 'Authorization', Value: 'Basic xxxxxxx'}]`|
 
 
 ## Error Codes
