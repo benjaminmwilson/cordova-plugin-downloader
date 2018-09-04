@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-downloader",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Cordova Downloader Plugin with no cordova-file-transfer dependency",
   "devDependencies": {
     "chai": "^4.1.2",
