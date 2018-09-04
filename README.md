@@ -32,7 +32,13 @@ dl.Initialize({
     remove: true,
     timeout: 0,
     success: DownloaderSuccess,
-    error: DownloaderError
+    error: DownloaderError,
+    headers: [
+        {
+            Key: 'Authorization',
+            Value: 'Basic ' + btoa(token)
+        }
+    ]
 });
 
 
@@ -61,6 +67,7 @@ function DownloaderSuccess() {
 | `timeout`     | `0`                          | Download timeout in milliseconds. Set to 0 for infinite time|
 | `success`     | `undefined`                  | Success callback|
 | `error`       | `undefined`                  | Error callback. Argument indicates problem|
+| `headers`     | `[]`                         | Set XHR Headers. Accepts a list of Key/Value pairs. `[{Key: 'Authorization', Value: 'Basic xxxxxxx'}]`|
 
 
 ## Error Codes
