@@ -7,7 +7,7 @@ function Download() {
         unzip: false,
         remove: false,
         timeout: 0,
-        headers: {}
+        headers: []
     };
 }
 
@@ -81,7 +81,9 @@ Download.prototype.Get = function(url) {
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
-        xhr.setRequestHeader('Authorization', that.Settings.headers.Authorization);
+        that.Settings.headers.forEach(function(header){
+            xhr.setRequestHeader(header.Key, header.Value);
+        });        
         xhr.responseType = 'blob';
         xhr.timeout = that.Settings.timeout;
 
