@@ -33,6 +33,7 @@ dl.Initialize({
     timeout: 0,
     success: DownloaderSuccess,
     error: DownloaderError,
+    progress: DownloadProgress,
     headers: [
         {
             Key: 'Authorization',
@@ -51,6 +52,12 @@ function DownloaderError(err) {
 
 function DownloaderSuccess() {
     console.log("yay!");
+}
+
+
+function DownloadProgress(evt:ProgressEvent) {
+    console.log("loaded",evt.loaded);
+    console.log("total",evt.total);  //If there is Content-Length in the Headers
 }
 ```
 
