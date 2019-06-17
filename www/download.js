@@ -99,7 +99,6 @@ Download.prototype.Get = function (url) {
         xhr.ontimeout = function () { that.Settings.error(6); /*ERROR 6: Timeout */ };
 
         xhr.onprogress = function (event) {
-            console.log("已下载:::::"+event.loaded);
             that.Settings.progress(event);
         };
 
