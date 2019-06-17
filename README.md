@@ -54,7 +54,6 @@ function DownloaderSuccess() {
     console.log("yay!");
 }
 
-
 function DownloadProgress(evt:ProgressEvent) {
     console.log("loaded",evt.loaded);
     console.log("total",evt.total);  //If there is Content-Length in the Headers
@@ -74,6 +73,7 @@ function DownloadProgress(evt:ProgressEvent) {
 | `timeout`     | `0`                          | Download timeout in milliseconds. Set to 0 for infinite time|
 | `success`     | `undefined`                  | Success callback|
 | `error`       | `undefined`                  | Error callback. Argument indicates problem|
+| `progress`    | `undefined`                  | Progress callback|
 | `headers`     | `[]`                         | Set XHR Headers. Accepts a list of Key/Value pairs. `[{Key: 'Authorization', Value: 'Basic xxxxxxx'}]`|
 
 
