@@ -1,3 +1,5 @@
+# Provided for reference only - not actively being maintained. Please fork if it's useful
+
 # cordova-plugin-downloader
 
 Cordova plugin to download, store and unzip files with no `cordova-file-transfer`
