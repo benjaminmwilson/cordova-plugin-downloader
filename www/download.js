@@ -2,12 +2,11 @@
 
 function Download() {
     this.Settings = {
-        fileSystem : cordova.file.dataDirectory,
+        fileSystem: cordova.file.dataDirectory,
         folder: "folder",
         unzip: false,
         remove: false,
-        timeout: 0,
-        headers: []
+        timeout: 0
     };
 }
 
@@ -18,48 +17,48 @@ function Download() {
  * .success (function to call when successful), .error (function to call on error)
  *
  */
-Download.prototype.Initialize = function(settings) {
+Download.prototype.Initialize = function (settings) {
 
-    if(typeof settings.fileSystem !== "undefined") {
+    if (typeof settings.fileSystem !== "undefined") {
         this.Settings.fileSystem = settings.fileSystem;
     }
 
-    if(typeof settings.folder !== "undefined") {
+    if (typeof settings.folder !== "undefined") {
         this.Settings.folder = settings.folder;
     }
 
-    if(typeof settings.unzip !== "undefined") {
+    if (typeof settings.unzip !== "undefined") {
         this.Settings.unzip = settings.unzip;
     }
 
-    if(typeof settings.remove !== "undefined") {
+    if (typeof settings.remove !== "undefined") {
         this.Settings.remove = settings.remove;
     }
 
-    if(typeof settings.timeout !== "undefined") {
+    if (typeof settings.timeout !== "undefined") {
         this.Settings.timeout = settings.timeout;
     }
-    
-    if(typeof settings.headers !== "undefined") {
-        this.Settings.headers = settings.headers;
-    }
 
-    if(typeof settings.success !== "undefined") {
+    if (typeof settings.success !== "undefined") {
         this.Settings.success = settings.success;
     }
 
-    if(typeof settings.error !== "undefined") {
+    if (typeof settings.error !== "undefined") {
         this.Settings.error = settings.error;
+    }
+
+    if (typeof settings.progress !== "undefined") {
+        this.Settings.progress = settings.progress;
     }
 
 };
 
-Download.prototype.Get = function(url) {
+Download.prototype.Get = function (url) {
 
     var that = this;
 
-    if(cordova && typeof window.resolveLocalFileSystemURL !== 'undefined') {
-        window.resolveLocalFileSystemURL(this.Settings.fileSystem, GetParentPathSuccess, function() { that.Settings.error(0); /* ERROR 0: Cannot resolve filesystem */});
+    if (cordova && typeof window.resolveLocalFileSystemURL !== 'undefined') {
+        window.resolveLocalFileSystemURL(this.Settings.fileSystem, GetParentPathSuccess, function () { that.Settings.error(0); /* ERROR 0: Cannot resolve filesystem */ });
     }
     else {
         console.log("download.Get supported on Cordova only");
@@ -68,11 +67,11 @@ Download.prototype.Get = function(url) {
 
     function GetParentPathSuccess(parentEntry) {
 
-        if(parentEntry.isDirectory === false) {
+        if (parentEntry.isDirectory === false) {
             that.Settings.error(2);  //ERROR 2: Cannot create destination folder
         }
         else {
-            parentEntry.getDirectory(that.Settings.folder, {create: true}, DownloadFile, function() { that.Settings.error(2); });
+            parentEntry.getDirectory(that.Settings.folder, { create: true }, DownloadFile, function () { that.Settings.error(2); });
         }
 
     }
@@ -81,13 +80,10 @@ Download.prototype.Get = function(url) {
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url, true);
-        that.Settings.headers.forEach(function(header){
-            xhr.setRequestHeader(header.Key, header.Value);
-        });        
         xhr.responseType = 'blob';
         xhr.timeout = that.Settings.timeout;
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             if (this.status === 200) {
 
                 var blob = new Blob([this.response], { type: 'application/zip' });
@@ -102,6 +98,9 @@ Download.prototype.Get = function(url) {
         xhr.onerror = function () { that.Settings.error(5); /*ERROR 5: Network error */ };
         xhr.ontimeout = function () { that.Settings.error(6); /*ERROR 6: Timeout */ };
 
+        xhr.onprogress = function (event) {
+            that.Settings.progress(event);
+        };
 
         xhr.send();
 
@@ -113,7 +112,7 @@ Download.prototype.Get = function(url) {
 
             writeFile(fileEntry, fileData);
 
-        }, function() { that.Settings.error(7); /*ERROR 7: File create error*/ });
+        }, function () { that.Settings.error(7); /*ERROR 7: File create error*/ });
     }
 
     function writeFile(fileEntry, dataObj) {
@@ -121,10 +120,10 @@ Download.prototype.Get = function(url) {
         // Create a FileWriter object for our FileEntry
         fileEntry.createWriter(function (fileWriter) {
 
-            fileWriter.onwriteend = function() {
+            fileWriter.onwriteend = function () {
                 //console.log("Successful file write...");
 
-                if(that.Settings.unzip === true) {
+                if (that.Settings.unzip === true) {
                     that.Unzip(fileEntry.fullPath); //TODO Unzip
                 }
                 else {
@@ -134,7 +133,7 @@ Download.prototype.Get = function(url) {
 
             };
 
-            fileWriter.onerror = function(e) {
+            fileWriter.onerror = function (e) {
                 //console.log("Failed file write: " + e.toString());
                 that.Settings.error(8); //ERROR 8: File write error
             };
@@ -146,7 +145,7 @@ Download.prototype.Get = function(url) {
 
 }; // Get()
 
-Download.prototype.Unzip = function(zipFilePath) {
+Download.prototype.Unzip = function (zipFilePath) {
     //namespace to ignore JSHint warns about zip
     /** @namespace zip **/
 
@@ -156,10 +155,10 @@ Download.prototype.Unzip = function(zipFilePath) {
     zip.unzip(Join([destFS, zipFilePath]), Join([destFS, this.Settings.folder]), UnzipComplete); //cordova zip plugin unzip
 
     function UnzipComplete(status) {
-        if(status === -1) {
+        if (status === -1) {
             that.Settings.error(9); //UNZIP error
         }
-        else if(that.Settings.remove === true) {
+        else if (that.Settings.remove === true) {
             RemoveZipFile(zipFilePath);
         }
         else {
@@ -174,9 +173,9 @@ Download.prototype.Unzip = function(zipFilePath) {
         var fszipFilePath = Join([that.Settings.fileSystem, zipFilePath]);
 
         window.resolveLocalFileSystemURL(fszipFilePath,
-            function(entry) {
-                if(entry.isFile) {
-                    entry.remove(that.Settings.success, function() { that.Settings.error(10); /* Delete error #1 */ });
+            function (entry) {
+                if (entry.isFile) {
+                    entry.remove(that.Settings.success, function () { that.Settings.error(10); /* Delete error #1 */ });
                 }
                 else {
                     that.Settings.error(11); //Delete error #2
@@ -194,7 +193,7 @@ Download.prototype.Unzip = function(zipFilePath) {
  * @param {string} path
  */
 function GetLastPath(path) {
-    return path.slice(-1) === "/"  ? GetAfterLast(path.slice(0, -1), "/") : GetAfterLast(path, "/");
+    return path.slice(-1) === "/" ? GetAfterLast(path.slice(0, -1), "/") : GetAfterLast(path, "/");
 }
 
 /**
@@ -203,7 +202,7 @@ function GetLastPath(path) {
  * @param s
  */
 function GetAfterLast(str, s) {
-    return str.substring(str.lastIndexOf(s)+1);
+    return str.substring(str.lastIndexOf(s) + 1);
 }
 
 /**
@@ -227,4 +226,3 @@ function Join(pathList) {
 
 /** @namespace module **/
 module.exports = Download;
-
