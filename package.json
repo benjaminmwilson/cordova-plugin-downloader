@@ -6,7 +6,7 @@
     "chai": "^4.1.2",
     "chai-spies": "^1.0.0",
     "jshint": "^2.9.3",
-    "mocha": "^4.1.0"
+    "mocha": "^10.2.0"
   },
   "config": {
     "lintdirs": "www/**.js lib/**.js"
